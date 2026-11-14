@@ -105,4 +105,4 @@ node tools/a1-shots.mjs touch                                    # 第一幕真�
 - **画面**：场景底图、示例照片和小猫毛皮由 Codex（内置出图工具）根据 [`prompts/`](prompts/) 里的提示词生成；小猫只按文字描述生成，没有用任何真实照片。示例照片里出现的人物是生成的，不是真人。
 - **声音**：全部由 WebAudio 现场合成，没有音频文件。
 - **字体**：[霞鹜文楷 LXGW WenKai](https://github.com/lxgw/LxgwWenKai) 的子集（只含用到的字），SIL OFL 1.1 许可，许可证全文见 [`app/assets/fonts/OFL.txt`](app/assets/fonts/OFL.txt)。
-- **许可证**：代码和文档以 [MIT](LICENSE) 发布。仓库里由 AI 生成的图片同样按 MIT 提供；需要留意的是，AI 生成内容在不同法域下能否享有著作权并不确定。字体不在 MIT 范围内，按 OFL 1.1。
+- **许可证**：代码和文档以 [MIT](LICENSE) 发布。仓库里由 AI 生成的图片同样按 MIT 提供；需要留意的是，AI 生成内容在不同法域下能否享有著作权并不确定。字体不在 MIT 范围内，按 OFL 1.1（见 [`NOTICE`](NOTICE)）。

@@ -1,0 +1,6 @@
+Third-party material
+
+The font file app/assets/fonts/wenkai-subset.woff2 is a web-delivery subset of
+LXGW WenKai (https://github.com/lxgw/LxgwWenKai) and is NOT covered by the MIT
+License in LICENSE. It is licensed under the SIL Open Font License 1.1; see
+app/assets/fonts/OFL.txt.
