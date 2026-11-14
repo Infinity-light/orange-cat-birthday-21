@@ -1,0 +1,22 @@
+<!doctype html><meta charset="utf-8"><title>cat pose sheet</title>
+<style>body{margin:0;background:#3a5a4c;font:12px sans-serif;color:#fff}.cell{position:relative;display:inline-block;width:300px;height:250px;border:1px solid rgba(255,255,255,.15);overflow:hidden;background:linear-gradient(#3d6152 0 84%,#9a6a3c 84%)}.cell b{position:absolute;left:6px;top:4px;z-index:5}
+.cat{position:absolute;left:0;top:0;will-change:transform}.cat-inner{position:absolute;left:0;top:0}.cat-svg{position:absolute;display:block}</style>
+<div id="g"></div>
+<script type="module">
+import { Cat } from './js/cat/cat.js';
+import { POSES } from './js/cat/clips.js';
+import { loadCatAssets } from './js/cat/rig.js';
+const q = new URLSearchParams(location.search);
+const names = (q.get('p') || Object.keys(POSES).join(',')).split(',');
+const g = document.getElementById('g'); window.cats = [];
+await loadCatAssets();
+for (const n of names) {
+  const c = document.createElement('div'); c.className = 'cell'; c.innerHTML = `<b>${n}</b>`; g.appendChild(c);
+  const cat = new Cat({ scale: +(q.get('s') || 1.5) }).mount(c); cat.place(150, 210); cat.autoBlink = false;
+  const [pn, ...mods] = n.split('~'); const mo = {}; mods.forEach((m) => { const [k, v] = m.split('='); mo[k] = +v; });
+  cat.setPose(Object.assign({}, POSES[pn] || {}, mo));
+  if (q.get('nospr')) cat.rig.noSprites = true;
+  window.cats.push(cat);
+}
+window.ready = true;
+</script>

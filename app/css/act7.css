@@ -1,0 +1,133 @@
+/* ================= 第七幕 生日房间 ================= */
+.act7 { background: #2a473d; }
+.a7-wall { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background:
+  repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 44px),
+  linear-gradient(#3b6a5c, #2f5549); }
+.a7-floor { position: absolute; left: 0; right: 0; bottom: 0; background:
+  repeating-linear-gradient(90deg, rgba(90,50,20,.1) 0 2px, transparent 2px 72px),
+  linear-gradient(#c8935c, #a97746); border-top: 6px solid #e2b27c; }
+.a7-rug { position: absolute; left: 34px; width: 322px; height: 76px; border-radius: 50%; background: radial-gradient(closest-side, #d2553d 0 62%, #fbf3e2 62% 70%, #d2553d 70% 86%, #f2c94d 86% 100%); opacity: .82; }
+.a7-string { position: absolute; left: 0; z-index: 3; }
+.a7-wallbox { position: absolute; left: 20px; right: 20px; z-index: 2; }
+.a7-wallbox .grp { position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+.grp { opacity: .0; transition: opacity 1.6s ease; }
+.act7.lit0 .g1, .act7.lit1 .g2, .act7.lit2 .g3 { opacity: 1; }
+.a7-line { position: absolute; left: 0; right: 0; top: 6%; height: 1.5px; background: #e9dcc0; transform: rotate(1deg); }
+.a7-ph { width: 27%; z-index: 2; }
+.a7-ph::before { content: ""; position: absolute; left: 50%; top: -7px; width: 9px; height: 16px; margin-left: -4.5px; background: #d2553d; border-radius: 2px; border: 1px solid #6a3b1f; }
+.a7-film { position: absolute; display: flex; gap: 4px; padding: 8px 6px; background:
+  repeating-linear-gradient(90deg, transparent 0 3px, #fff3d6 3px 8px, transparent 8px 11px) 0 2px / 11px 3px repeat-x,
+  repeating-linear-gradient(90deg, transparent 0 3px, #fff3d6 3px 8px, transparent 8px 11px) 0 calc(100% - 2px) / 11px 3px repeat-x, #2a1d13; transform: rotate(-4deg); box-shadow: 0 3px 8px rgba(0,0,0,.3); }
+.a7-film img { width: 38px; height: 38px; object-fit: cover; display: block; }
+.a7-ticket { position: absolute; padding: 6px 10px; background: #f6ecd3; border-top: 7px solid var(--red); transform: rotate(5deg); box-shadow: 0 3px 8px rgba(0,0,0,.3); font-size: 12.5px; white-space: nowrap; }
+.a7-ticket span { display: block; font-size: 9.5px; color: var(--ink2); letter-spacing: .08em; }
+.a7-note { position: absolute; width: 44px; height: 44px; padding: 9px 7px; box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+.a7-note i { display: block; height: 2px; margin-bottom: 6px; background: rgba(74,44,23,.4); border-radius: 1px; }
+.a7-note i:last-child { width: 60%; }
+.a7-shelf { position: absolute; right: 8px; width: 132px; height: 50px; display: flex; justify-content: space-around; align-items: flex-end; border-bottom: 7px solid #a8683a; box-shadow: 0 3px 0 #6a3b1f; z-index: 2; }
+.a7-shelf span { width: 36px; } .a7-shelf svg { width: 36px; height: 42px; display: block; }
+.a7-cam { position: absolute; right: 12px; width: 84px; height: 68px; z-index: 5; }
+.a7-cam svg { width: 84px; height: 68px; position: static; }
+.a7-box { position: absolute; left: 248px; z-index: 4; display: none; }
+.a7-floorlamp { position: absolute; left: 0; z-index: 4; }
+.a7-walllamp { position: absolute; right: 10px; z-index: 3; }
+.a7-floorlamp .shade, .a7-walllamp .shade { transition: fill .5s; }
+.act7.lit0 .a7-floorlamp .shade, .act7.lit2 .a7-walllamp .shade { fill: #ffe2a0; }
+.a7-table { position: absolute; left: 100px; width: 190px; height: 90px; z-index: 6; }
+.a7-table::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 26px; border-radius: 50%; background: #b9733f; border: 2px solid #6a3b1f; box-shadow: 0 8px 0 -1px #8f562c, 0 8px 0 1px #6a3b1f; }
+.a7-table::after { content: ""; position: absolute; left: 50%; top: 30px; width: 16px; height: 58px; margin-left: -8px; background: #8f562c; border: 2px solid #6a3b1f; }
+.a7-cake { position: absolute; left: 120px; z-index: 7; }
+.a7-cake .flame, .a7-cake .cglow { transition: opacity .6s; transform-box: fill-box; transform-origin: 50% 100%; }
+.act7.cd0 .f0, .act7.cd1 .f1 { opacity: 1; animation: flick .5s ease-in-out infinite alternate; }
+.act7.cd0 .c0, .act7.cd1 .c1 { opacity: .85; }
+@keyframes flick { from { transform: scale(1) rotate(-3deg); } to { transform: scale(1.08, .94) rotate(4deg); } }
+.a7-glow { position: absolute; width: 270px; height: 330px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,226,160,.5), rgba(255,226,160,0)); opacity: 0; transition: opacity 1.2s; z-index: 8; pointer-events: none; mix-blend-mode: screen; }
+.act7.lit0 .gl0, .act7.lit1 .gl1, .act7.lit2 .gl2 { opacity: 1; }
+.a7-dark { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #131c2e; opacity: .78; transition: opacity 1.4s; z-index: 10; pointer-events: none; }
+.act7.n1 .a7-dark { opacity: .56; } .act7.n2 .a7-dark { opacity: .34; } .act7.n3 .a7-dark { opacity: .16; } .act7.party .a7-dark { opacity: .08; }
+.act7 .cat { transition: none; }
+.a7-lamp, .a7-candle { position: absolute; width: 68px; height: 68px; margin: -34px; border-radius: 50%; border: 0; background: transparent; padding: 0; z-index: 12; }
+.a7-lamp::before, .a7-candle::before { content: ""; position: absolute; top: 24px; right: 24px; bottom: 24px; left: 24px; border-radius: 50%; background: #fff3cf; box-shadow: 0 0 12px 4px rgba(255,226,160,.7); }
+.a7-lamp::after, .a7-candle::after { content: ""; position: absolute; top: 10px; right: 10px; bottom: 10px; left: 10px; border-radius: 50%; border: 2px solid #ffe9b8; animation: ring 1.7s ease-out infinite; }
+.act7.lit0 .a7-lamp[data-l="0"], .act7.lit1 .a7-lamp[data-l="1"], .act7.lit2 .a7-lamp[data-l="2"], .act7.cd0 .a7-candle[data-c="0"], .act7.cd1 .a7-candle[data-c="1"] { display: none; }
+.a7-candle { width: 52px; margin: -34px -26px; }
+.a7-candle[hidden], .a7-final[hidden], .a7-actions[hidden] { display: none; }
+.a7-candle::before { top: 26px; right: 18px; bottom: 26px; left: 18px; }
+.a7-candle::after { top: 10px; right: 2px; bottom: 10px; left: 2px; }
+.a7-final { position: absolute; left: 24px; right: 24px; z-index: 14; overflow-y: auto; touch-action: pan-y; background: rgba(251,243,226,.96); border-radius: 4px; padding: 18px 20px 16px; box-shadow: 0 12px 30px rgba(8,6,2,.45); text-align: center; }
+.a7-final.in { animation: paperIn .8s ease both; }
+.a7-final h2 { margin: 0 0 10px; font-size: 25px; letter-spacing: .06em; color: #b8432e; font-weight: 600; }
+.a7-final p, .a7-final em { margin: 0 0 6px; font-size: 16.5px; line-height: 1.75; opacity: 0; transform: translateY(6px); transition: opacity 1.4s, transform 1.4s; display: block; }
+.a7-final em { font-style: normal; font-size: 14.5px; color: var(--ink2); margin-top: 10px; }
+.a7-final .in { opacity: 1; transform: none; }
+.a7-actions { position: absolute; left: 0; right: 0; bottom: calc(14px + var(--safe-b)); display: flex; gap: 8px; justify-content: center; z-index: 15; }
+.a7-actions.in { animation: fadeIn 1.6s ease both; }
+.a7-actions .btn { padding: 10px 12px; font-size: 14px; }
+
+/* ================= 回忆册 / 纪念卡 ================= */
+.overlay-page { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 45; background: #2c4a40; animation: fadeIn .3s both; display: flex; flex-direction: column; }
+.overlay-page.out { opacity: 0; transition: opacity .3s; }
+.album-in { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; padding: 0 18px 20px; }
+.album header { padding: calc(26px + var(--safe-t)) 0 8px; color: var(--paper); text-align: center; }
+.album header span { font-size: 13px; letter-spacing: .3em; opacity: .7; }
+.album header h2 { margin: 4px 0 0; font-size: 27px; letter-spacing: .1em; font-weight: 600; }
+.album section { margin-top: 18px; background: var(--paper); border-radius: 4px; padding: 16px 16px 10px; box-shadow: 0 6px 16px rgba(0,0,0,.25); }
+.album section > h3 { margin: 0 0 12px; font-size: 18px; padding-left: 10px; border-left: 4px solid var(--orange); line-height: 1.2; }
+.al-photo { margin: 0 0 16px; background: #fffdf6; padding: 10px 10px 12px; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.al-photo img { display: block; width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+.al-photo figcaption { font-size: 16px; line-height: 1.7; margin-top: 8px; }
+.al-photo span { display: block; font-size: 12.5px; letter-spacing: .12em; color: var(--ink2); }
+.al-photo small { display: block; margin-top: 6px; font-size: 14.5px; line-height: 1.7; color: var(--ink2); }
+.al-photo small.hl { padding: 6px 10px; background: #ffe9a8; color: var(--ink); }
+.al-node { display: flex; gap: 12px; margin-bottom: 16px; }
+.al-node img { width: 92px; height: 92px; object-fit: cover; flex: none; border: 5px solid #2a1d13; }
+.al-node b { display: block; font-size: 17px; margin-bottom: 4px; }
+.al-node b i, .al-place b i { font-style: normal; font-size: 12px; font-weight: 400; padding: 1px 7px; margin-right: 8px; background: var(--green); color: var(--paper); border-radius: 2px; }
+.al-place b i { margin: 0 0 0 8px; background: transparent; color: var(--ink2); padding: 0; }
+.al-node p, .al-place p { margin: 0 0 6px; font-size: 15px; line-height: 1.7; }
+.al-node .q { padding: 6px 10px; background: #ffe9a8; }
+.al-place { margin-bottom: 18px; } .al-place b { display: block; font-size: 17px; margin-bottom: 6px; }
+.al-place img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; margin-bottom: 8px; border: 6px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.al-wish { font-size: 20px; line-height: 1.6; color: #b8432e; text-align: center; margin: 4px 0 10px; }
+.al-letter p { margin: 0 0 10px; font-size: 16px; line-height: 1.8; }
+.al-note { padding: 14px 14px 10px; margin-bottom: 12px; font-size: 15.5px; line-height: 1.75; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+.al-note p { margin: 0; } .al-note em { display: block; text-align: right; font-style: normal; font-size: 14px; color: var(--ink2); margin-top: 6px; }
+.al-note.n0 { background: #ffe9a8; transform: rotate(-.6deg); } .al-note.n1 { background: #f9d5c2; transform: rotate(.5deg); } .al-note.n2 { background: #d9ead3; transform: rotate(-.4deg); } .al-note.n3 { background: #fff; transform: rotate(.6deg); }
+.album .al-end { text-align: center; background: transparent; box-shadow: none; color: var(--paper); padding-bottom: 20px; }
+.al-end p { font-size: 22px; margin: 0 0 6px; } .al-end em { font-style: normal; font-size: 14px; opacity: .75; }
+.al-close { flex: none; margin: 10px auto calc(14px + var(--safe-b)); }
+.keep { align-items: center; justify-content: center; background: rgba(20,30,26,.92); }
+.keep-in { width: 340px; text-align: center; color: var(--paper); }
+.keep-in h2 { margin: 0 0 12px; font-size: 21px; letter-spacing: .14em; font-weight: 600; }
+.keep-img { min-height: 200px; display: grid; place-items: center; }
+.keep-img img, .keep-img canvas { display: block; width: auto; max-width: 100%; max-height: calc(var(--H) - 230px); margin: 0 auto; box-shadow: 0 12px 30px rgba(0,0,0,.5); -webkit-touch-callout: default; -webkit-user-select: auto; user-select: auto; pointer-events: auto; }
+.keep-hint { font-size: 13.5px; opacity: .8; margin: 12px 0; }
+.keep .row { display: flex; gap: 10px; justify-content: center; }
+.keep a.btn { text-decoration: none; display: inline-flex; align-items: center; }
+
+.a7-fold { display: block; margin: 8px auto 0; padding: 6px 12px; min-height: 34px; font-size: 13px; color: var(--ink2); background: transparent; border: 1px dashed rgba(74,44,23,.5); border-radius: 999px; }
+.a7-fold[hidden] { display: none; }
+.a7-final.mini .lines { display: none; }
+.a7-final.mini { padding: 10px 16px; } .a7-final.mini h2 { font-size: 19px; margin-bottom: 0; }
+
+/* 矮屏：照片墙收紧，互不遮挡 */
+.a7-wallbox.compact .a7-ph { width: 20%; top: 4% !important; }
+.a7-wallbox.compact .a7-ph:nth-of-type(1) { left: 6% !important; } .a7-wallbox.compact .a7-ph:nth-of-type(2) { left: 31% !important; } .a7-wallbox.compact .a7-ph:nth-of-type(3) { left: 56% !important; }
+.a7-wallbox.compact .a7-film { top: 56% !important; left: 3% !important; transform: rotate(-3deg) scale(.82); transform-origin: 0 0; }
+.a7-wallbox.compact .a7-ticket { top: 58% !important; right: 1% !important; transform: rotate(4deg) scale(.86); transform-origin: 100% 0; }
+.a7-wallbox.compact .a7-note { width: 34px; height: 34px; padding: 7px 5px; top: 84% !important; }
+.a7-wallbox.compact .a7-note i { margin-bottom: 4px; }
+.a7-wallbox.compact .a7-note:nth-of-type(1) { left: 22% !important; } .a7-wallbox.compact .a7-note:nth-of-type(2) { left: 34% !important; } .a7-wallbox.compact .a7-note:nth-of-type(3) { left: 46% !important; } .a7-wallbox.compact .a7-note:nth-of-type(4) { left: 58% !important; }
+
+.a7-zzz { position: absolute; z-index: 9; width: 40px; height: 50px; pointer-events: none; }
+.a7-zzz i { position: absolute; left: 0; bottom: 0; font-style: normal; font-size: 15px; color: #fff3cf; opacity: 0; animation: zzz 3.6s ease-in-out infinite; }
+.a7-zzz i:nth-child(2) { animation-delay: 1.2s; } .a7-zzz i:nth-child(3) { animation-delay: 2.4s; }
+@keyframes zzz { 0% { opacity: 0; transform: translate(0, 0) scale(.7); } 25% { opacity: .9; } 100% { opacity: 0; transform: translate(22px, -40px) scale(1.25); } }
+/* 矮屏：寄语纸收紧一点，保证「收起」按钮不被纸的下沿切掉 */
+.a7-final.sm { padding: 13px 16px 11px; }
+.a7-final.sm h2 { font-size: 22px; margin-bottom: 6px; }
+.a7-final.sm p { font-size: 15px; line-height: 1.6; margin-bottom: 4px; }
+.a7-final.sm em { font-size: 13.5px; margin-top: 6px; }
+.a7-final.sm .a7-fold { margin-top: 5px; min-height: 30px; padding: 4px 12px; }
+.al-shelf { margin: 0 0 9px; font-size: 14.5px; line-height: 1.7; color: var(--ink); }
+.al-shelf b { display: inline-block; margin-right: 8px; padding: 0 8px; font-size: 12.5px; font-weight: 600; color: var(--paper); background: var(--green2); border-radius: 3px; line-height: 20px; vertical-align: 1px; }

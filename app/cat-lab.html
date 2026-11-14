@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>小橘猫 · 动画工程</title>
+<style>
+  html,body{margin:0;background:#efe3cf;font-family:"LXGW WenKai","Kaiti SC","STKaiti","KaiTi",serif;color:#4a2c17}
+  h1{font-size:18px;margin:14px 16px 4px} p{margin:0 16px 8px;font-size:13px;opacity:.75}
+  #stage{position:relative;height:330px;margin:8px 12px;border-radius:14px;background:linear-gradient(#f8efdd 0 78%,#d9c19b 78% 100%);overflow:hidden;touch-action:none}
+  .cat{position:absolute;left:0;top:0;will-change:transform}.cat-inner{position:absolute;left:0;top:0}.cat-svg{position:absolute;display:block}
+  #btns{display:flex;flex-wrap:wrap;gap:8px;margin:8px 12px}
+  button{font:inherit;font-size:14px;padding:8px 12px;border-radius:999px;border:1.5px solid #6a3b1f;background:#fff7e8;color:#4a2c17}
+  #sheet{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:12px}
+  .cell{position:relative;height:170px;background:#f8efdd;border-radius:12px;overflow:hidden}
+  .cell span{position:absolute;left:10px;top:8px;font-size:13px}
+  #ed{margin:8px 12px}#edstage{position:relative;height:260px;border-radius:14px;background:linear-gradient(#f8efdd 0 80%,#d9c19b 80% 100%);overflow:hidden}
+  #edbar{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}#edsel{font:inherit;font-size:14px;padding:6px 10px;border-radius:10px;border:1.5px solid #6a3b1f;background:#fff7e8;color:#4a2c17}
+  #edout{width:100%;box-sizing:border-box;font:12px/1.5 ui-monospace,Consolas,monospace;border:1.5px solid #c9b38c;border-radius:8px;background:#fffaf0;color:#4a2c17;padding:6px 8px;resize:vertical}
+  #edsl{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:4px 16px;margin-top:8px}
+  #edsl label{display:grid;grid-template-columns:68px 1fr 44px;align-items:center;gap:6px;font-size:12.5px}#edsl label.chg{color:#b8432e;font-weight:700}
+  #edsl input{width:100%;accent-color:#d2553d}#edsl output{text-align:right;font-family:ui-monospace,Consolas,monospace;font-size:12px}
+  #dot{position:absolute;width:16px;height:16px;border-radius:50%;background:#2f6b5e;margin:-8px;display:none}
+</style>
+</head>
+<body>
+<h1>小橘猫 · 动画工程</h1>
+<p>点按钮播放动作片段；在舞台上按住并拖动，小猫会伸爪去够你的手指（跟手 IK）。动作数据在 <code>js/cat/clips.js</code>，骨骼在 <code>js/cat/rig.js</code>。</p>
+<div id="stage"><div id="dot"></div></div>
+<div id="btns"></div>
+<h1>姿势编辑器</h1>
+<p>选一个姿势，拖滑块实时看效果，不用改代码。调好后点「复制数据」，把这一行粘回 <code>js/cat/clips.js</code> 的 POSES 里对应的名字后面即可。「从这个姿势过渡过去」可以预览从别的姿势补间到当前数值的动作。</p>
+<div id="ed">
+  <div id="edstage"></div>
+  <div id="edbar"><select id="edsel"></select><button id="edreset">还原</button><button id="edtween">从站立过渡过去</button><button id="edcopy">复制数据</button></div>
+  <textarea id="edout" readonly rows="2"></textarea>
+  <div id="edsl"></div>
+</div>
+<h1>姿势表</h1>
+<div id="sheet"></div>
+<script type="module">
+import { Cat } from './js/cat/cat.js';
+import { CLIPS, POSES, CLIP_LABELS } from './js/cat/clips.js';
+const stage = document.getElementById('stage');
+const q = new URLSearchParams(location.search);
+const cat = new Cat({ scale: 1.5 }).mount(stage);
+cat.place(150, 285);
+window.cat = cat;
+const btns = document.getElementById('btns');
+for (const name of Object.keys(CLIP_LABELS)) {
+  const b = document.createElement('button'); b.textContent = CLIP_LABELS[name]; b.onclick = () => cat.play(name); btns.appendChild(b);
+}
+const add = (label, fn) => { const b = document.createElement('button'); b.textContent = label; b.onclick = fn; btns.appendChild(b); };
+add('行走', async () => { await cat.play('stand'); await cat.walkTo(cat.x > 200 ? 90 : stage.clientWidth - 90); });
+add('小跑', async () => { await cat.play('stand'); await cat.walkTo(cat.x > 200 ? 90 : stage.clientWidth - 90, { run: true }); });
+add('跳过去', async () => { await cat.jumpTo(cat.x > 200 ? 90 : stage.clientWidth - 90, 285, { h: 80 }); });
+const dot = document.getElementById('dot');
+const pt = (e) => { const r = stage.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+stage.addEventListener('pointerdown', (e) => { const [x, y] = pt(e); dot.style.display = 'block'; dot.style.left = x + 'px'; dot.style.top = y + 'px'; cat.reach(x, y); stage.setPointerCapture(e.pointerId); });
+stage.addEventListener('pointermove', (e) => { if (dot.style.display !== 'block') return; const [x, y] = pt(e); dot.style.left = x + 'px'; dot.style.top = y + 'px'; cat.reachMove(x, y); });
+stage.addEventListener('pointerup', () => { dot.style.display = 'none'; cat.unreach(); });
+// 姿势编辑器
+import { BASE, POSE_KEYS } from './js/cat/rig.js';
+{
+  const ed = new Cat({ scale: 1.5 }).mount(document.getElementById('edstage')); ed.place(170, 228); ed.autoBlink = false; window.edCat = ed;
+  const sel = document.getElementById('edsel'), box = document.getElementById('edsl'), out = document.getElementById('edout');
+  for (const n of Object.keys(POSES)) { const o = document.createElement('option'); o.value = o.textContent = n; sel.appendChild(o); }
+  // 每个参数的滑块范围 [最小, 最大, 步长]；没列出的按 ±60 / 1
+  const RANGE = { pitch: [-60, 100, 1], stretch: [0.6, 1.4, 0.01], arch: [-12, 12, 0.5], tilt: [-30, 30, 1], turn: [-1, 1, 0.05], lookX: [-2, 2, 0.1], lookY: [-2, 2, 0.1], blink: [0, 1, 0.05], happy: [0, 1, 1], mouth: [0, 1, 0.05], earL: [-30, 30, 1], earR: [-30, 30, 1], tailA: [-90, 120, 1], tailCurl: [-25, 25, 0.5], tailWave: [0, 2, 0.1], fnA: [-90, 90, 1], ffA: [-90, 90, 1], hnA: [-90, 90, 1], hfA: [-90, 90, 1] };
+  let cur = {};
+  const data = () => { const o = {}; for (const k of POSE_KEYS) if (Math.abs(cur[k] - BASE[k]) > 1e-6) o[k] = +cur[k].toFixed(2); return o; };
+  const show = () => { out.value = `${sel.value}: { ${Object.entries(data()).map(([k, v]) => `${k}: ${v}`).join(', ')} },`; };
+  const build = () => {
+    cur = {}; for (const k of POSE_KEYS) cur[k] = POSES[sel.value][k] !== undefined ? POSES[sel.value][k] : BASE[k];
+    box.innerHTML = '';
+    for (const k of POSE_KEYS) {
+      const [mn, mx, st] = RANGE[k] || [-60, 60, 1];
+      const l = document.createElement('label'); l.innerHTML = `<span>${k}</span><input type="range" min="${mn}" max="${mx}" step="${st}" value="${cur[k]}"><output>${cur[k]}</output>`;
+      const inp = l.querySelector('input'), o = l.querySelector('output');
+      const mark = () => l.classList.toggle('chg', Math.abs(cur[k] - BASE[k]) > 1e-6); mark();
+      inp.oninput = () => { cur[k] = +inp.value; o.textContent = inp.value; mark(); ed.setPose(cur); show(); };
+      box.appendChild(l);
+    }
+    ed.setPose(cur); show();
+  };
+  sel.onchange = build; document.getElementById('edreset').onclick = build;
+  document.getElementById('edtween').onclick = async () => { ed.setPose('stand'); await ed.poseTo(Object.assign({}, cur), 420); };
+  document.getElementById('edcopy').onclick = () => { out.select(); try { navigator.clipboard.writeText(out.value); } catch (e) { document.execCommand('copy'); } };
+  sel.value = 'sit'; build();
+}
+// 姿势表
+const sheet = document.getElementById('sheet');
+const names = q.get('poses') ? q.get('poses').split(',') : Object.keys(POSES);
+window.sheetCats = [];
+for (const n of names) {
+  const c = document.createElement('div'); c.className = 'cell'; c.innerHTML = `<span>${n}</span>`; sheet.appendChild(c);
+  const k = new Cat({ scale: 0.82 }).mount(c); k.place(78, 150); k.setPose(n); k.autoBlink = false; window.sheetCats.push(k);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+Re-shoot the attached flat vector illustration as a real photograph: a single frame from a warm live-action family film, shot on 35mm film with an 85mm lens at f/2. Keep the same vertical composition and the same story moment, but everything must be physically real.
+
+The moment: on an old oak tabletop sits a birthday parcel wrapped in brown kraft paper printed with small white crosses and orange dots, tied with a red-and-white striped paper ribbon. The front of the wrapping has just been torn open into a ragged V-shaped hole with real torn fibrous edges curling outward. Out of the dark inside of the hole a real 10-week-old orange tabby kitten is poking its head and one front paw: golden-orange fur, round face, very large round glossy black eyes with a window catchlight, cream-white muzzle and chest, pink nose, well-behaved and curious expression, looking straight into the lens. One small white-toed paw rests over the torn paper edge.
+
+Around it, as in the reference: a cream paper luggage tag on a string leans at the upper-left of the parcel (leave the tag blank, no writing), an instant photo print rests against the upper-right corner of the parcel, and a string of small triangular paper bunting (orange, cream, brick red, tan) hangs across the top against a deep sage-green painted plaster wall, softly out of focus.
+
+Light: one clear key light — late-afternoon window light from the upper left, warm 3200K, raking across the paper so every crease, fibre and whisker shows; cool soft fill in the shadows; a thin warm rim light on the kitten's ears and whiskers; the inside of the parcel falls to deep warm black. Gentle falloff toward the edges, natural vignette. Shallow depth of field: the kitten's eyes are tack sharp, the front edge of the table and the bunting melt into creamy bokeh. A few dust motes float in the light beam. Fine film grain, subtle halation on highlights, rich but restrained colour grade (deep green, kraft brown, orange fur, cream).
+
+Leave the upper third of the frame (the green wall under the bunting) calm and empty as negative space, and leave the bottom fifth as plain out-of-focus tabletop.
+
+Not wanted: flat vector or sticker look, cartoon outlines, cel shading, uniform lighting, 3D-render plastic look, any text, letters, numbers, logos, UI buttons, captions, watermarks, extra animals, human hands.

@@ -1,0 +1,18 @@
+import { open, BASE, sleep } from './pw.mjs';
+const H = +process.env.VH || 844;
+const { browser, page, errors } = await open({ viewport: { width: 390, height: H } });
+const T = process.env.TAG || 'r1';
+const shot = (n) => page.screenshot({ path: `shots/${T}-a5-${n}.png` });
+await page.goto(BASE + '/index.html?act=5'); await sleep(2600);
+await shot('0-shop');
+await page.click('.a5-item[data-i="0"]'); await sleep(600); await shot('1-tag'); await page.click('.a5-tag button');
+await page.click('.a5-item[data-i="2"]'); await sleep(500); await page.click('.a5-tag button'); await sleep(400); await shot('2-leverhint');
+const b = await (await page.$('.a5-lever')).boundingBox();
+await page.mouse.move(b.x + 30, b.y + 30); await page.mouse.down(); await page.mouse.move(b.x + 30, b.y + 90, { steps: 8 }); await shot('3-pull'); await page.mouse.up();
+await sleep(1200); await shot('4-spin'); await sleep(2600); await shot('5-result');
+await page.click('[data-a=again]'); await sleep(3900); await shot('6-result2');
+await page.click('[data-a=take]'); await sleep(1500); await shot('7-card'); await sleep(1200); await shot('8-catch'); await sleep(1600); await shot('9-push');
+await page.waitForSelector('.a5-card.ready', { timeout: 15000 }); await shot('10-ready');
+await page.click('.hint-alt'); await sleep(600); await shot('11-zoom'); await sleep(1500); await shot('12-act6');
+console.log(errors.join('\n') || 'no errors');
+await browser.close();

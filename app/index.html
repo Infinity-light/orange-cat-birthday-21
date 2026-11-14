@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0d1410">
+<meta name="format-detection" content="telephone=no">
+<title>有一份礼物，等你拆开</title>
+<meta name="description" content="一只小橘猫整理了这一年，想亲手交给你。">
+<meta property="og:title" content="有一份礼物，等你拆开">
+<meta property="og:description" content="一只小橘猫整理了这一年，想亲手交给你。">
+<meta property="og:image" content="https://xiaojumao-film.godpenai.com/assets/icon.png">
+<meta itemprop="image" content="https://xiaojumao-film.godpenai.com/assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<style>
+  /* 首屏加载提示：样式内联，脚本和字体没到之前就能看到 */
+  #loading { position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 99; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; background: #0d1410; color: #f3e6cb; font: 16px/1.6 "Kaiti SC", "STKaiti", "KaiTi", serif; letter-spacing: .2em; transition: opacity .5s; }
+  #loading i { width: 46px; height: 46px; border-radius: 12px; background: #c9a06c; box-shadow: inset 0 0 0 3px rgba(0,0,0,.12); position: relative; animation: ldw 1.4s ease-in-out infinite; }
+  #loading i::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 8px; margin-left: -4px; background: repeating-linear-gradient(45deg, #fbf3e2 0 4px, #d2553d 4px 8px); }
+  @keyframes ldw { 0%, 60%, 100% { transform: none; } 70% { transform: rotate(-7deg); } 80% { transform: rotate(6deg); } 90% { transform: rotate(-3deg); } }
+  #loading.gone { opacity: 0; pointer-events: none; }
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Cpath d=%27M10 26L8 6l16 8zM54 26l2-20-16 8z%27 fill=%27%23F29A3F%27/%3E%3Cellipse cx=%2732%27 cy=%2736%27 rx=%2726%27 ry=%2722%27 fill=%27%23F29A3F%27/%3E%3Ccircle cx=%2722%27 cy=%2734%27 r=%275%27 fill=%27%231E130D%27/%3E%3Ccircle cx=%2742%27 cy=%2734%27 r=%275%27 fill=%27%231E130D%27/%3E%3Cellipse cx=%2732%27 cy=%2745%27 rx=%279%27 ry=%276%27 fill=%27%23FFF2DC%27/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/wenkai-subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/style.css?v=1">
+<link rel="stylesheet" href="css/act2.css?v=1">
+<link rel="stylesheet" href="css/act3.css?v=1">
+<link rel="stylesheet" href="css/act4.css?v=1">
+<link rel="stylesheet" href="css/act5.css?v=1">
+<link rel="stylesheet" href="css/act6.css?v=1">
+<link rel="stylesheet" href="css/act7.css?v=1">
+<link rel="stylesheet" href="css/cinema.css?v=1">
+</head>
+<body>
+<div id="loading"><i></i><span>小猫正在包礼物…</span></div>
+<div id="rotate" aria-hidden="true"><svg width="64" height="64" viewBox="0 0 64 64"><rect x="20" y="8" width="24" height="44" rx="5" fill="none" stroke="#f6ecd3" stroke-width="2.500"/><circle cx="32" cy="45" r="2" fill="#f6ecd3"/><path d="M6 40 a26 26 0 0 0 14 18 M20 58 l-7 -1 M20 58 l-1 -7" fill="none" stroke="#f2994a" stroke-width="2.500" stroke-linecap="round"/></svg><p>把手机竖过来看<br><small>这份礼物是按竖屏包的</small></p></div>
+<div id="stage">
+  <div id="acts"></div>
+  <div id="veil"></div>
+  <div id="ui">
+    <div class="topbar">
+      <button id="btn-sound" type="button" aria-label="开启声音">
+        <svg viewBox="0 0 28 28" width="22" height="22"><path d="M5 11h4l6-5v16l-6-5H5z" fill="currentColor"/><path class="wave" d="M18.500 10.500c1.500 1.800 1.500 5.200 0 7M21.500 8c2.800 3.200 2.800 8.800 0 12" fill="none" stroke="currentColor" stroke-width="1.900" stroke-linecap="round"/><path class="mute" d="M19 11l6 6M25 11l-6 6" fill="none" stroke="currentColor" stroke-width="1.900" stroke-linecap="round"/></svg>
+      </button>
+      <button id="btn-menu" type="button" aria-label="目录">
+        <svg viewBox="0 0 28 28" width="22" height="22"><path d="M6 9h16M6 14h16M6 19h10" fill="none" stroke="currentColor" stroke-width="2.200" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<noscript><p style="position:fixed;left:0;right:0;top:40%;z-index:100;text-align:center;color:#f3e6cb">这份礼物需要开启 JavaScript 才能拆开。</p></noscript>
+<script type="module" src="js/main.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* ================= 第六幕 刮刮卡 ================= */
+.act6 { background: #2f5a4f; }
+.a6-card { position: absolute; left: 30px; width: 330px; perspective: 1200px; z-index: 10; transform-origin: 50% 50%; }
+.a6-flip { position: absolute; top: 0; right: 0; bottom: 0; left: 0; transform-style: preserve-3d; -webkit-transform-style: preserve-3d; transition: transform .8s cubic-bezier(.4,0,.2,1); }
+.a6-flip.flipped { transform: rotateY(180deg); }
+.a6-card .face { position: absolute; top: 0; right: 0; bottom: 0; left: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: #f6ecd3; border-radius: 8px; box-shadow: 0 14px 30px rgba(8,6,2,.45); padding: 14px 16px 14px; display: flex; flex-direction: column; background-image: repeating-linear-gradient(45deg, rgba(210,85,61,.07) 0 8px, transparent 8px 16px); outline: 1.5px solid rgba(106,59,31,.7); outline-offset: -6px; }
+.a6-card h3 { margin: 2px 0 8px; text-align: center; font-size: 19px; letter-spacing: .14em; color: #b8432e; font-weight: 600; flex: none; }
+.a6-letter { position: relative; flex: 1; min-height: 0; background: #fffdf6; border-radius: 4px; padding: 10px 13px; font-size: 15px; line-height: 1.66; overflow: hidden; }
+.a6-card.big .a6-letter { font-size: 17.5px; line-height: 1.86; padding: 16px 16px; }
+.a6-letter p { margin: 0 0 7px; }
+.a6-card.big .a6-letter p { margin-bottom: 10px; }
+.a6-coat { position: absolute; left: 0; top: 0; touch-action: none; border-radius: 4px; }
+.a6-flake { position: absolute; background: #dcc48e; border-radius: 2px; pointer-events: none; z-index: 3; }
+.a6-card .back { transform: rotateY(180deg); align-items: center; justify-content: center; text-align: center; }
+.a6-inv { position: relative; width: 100%; padding: 26px 10px; }
+.a6-inv h3 { font-size: 28px; letter-spacing: .3em; padding-left: .3em; margin-bottom: 20px; }
+.a6-inv p { margin: 0 0 12px; font-size: 17px; line-height: 1.6; }
+.a6-inv p:first-of-type { font-size: 21px; margin-bottom: 18px; }
+.a6-inv em { display: block; margin-top: 22px; font-style: normal; font-size: 15px; color: var(--ink2); }
+.a6-stamp { position: absolute; right: 6px; top: -6px; width: 54px; height: 54px; border-radius: 50%; border: 2.5px solid #b8432e; color: #b8432e; display: grid; place-items: center; font-size: 22px; transform: rotate(14deg); opacity: .8; }
+.a6-notes { position: absolute; left: 0; width: 390px; height: 0; z-index: 14; }
+.a6-notes[hidden] { display: none; }
+.a6-note { position: absolute; left: 44px; width: 302px; padding: 18px 18px 14px; font-size: 16.5px; line-height: 1.75; box-shadow: 0 10px 22px rgba(8,6,2,.4); transform: translate(var(--x), var(--y)) rotate(var(--r)); animation: noteOpen .55s cubic-bezier(.2,.9,.3,1.1) both; transform-origin: 50% 0; }
+.a6-note::before { content: ""; position: absolute; left: 50%; top: -8px; width: 70px; height: 18px; margin-left: -35px; background: rgba(242,154,63,.7); transform: rotate(-2deg); }
+.a6-note p { margin: 0; }
+.a6-note em { display: block; margin-top: 10px; text-align: right; font-style: normal; font-size: 15px; color: var(--ink2); }
+@keyframes noteOpen { from { opacity: 0; transform: translate(var(--x), calc(var(--y) + 40px)) rotate(var(--r)) perspective(600px) rotateX(-70deg); } to { opacity: 1; transform: translate(var(--x), var(--y)) rotate(var(--r)); } }
+.a6-doorwrap { position: absolute; width: 120px; height: 250px; z-index: 4; }
+.a6-glow { position: absolute; left: -90px; right: -90px; top: -60px; bottom: -30px; background: radial-gradient(closest-side, rgba(255,226,160,.55), transparent); animation: glowPulse 3s ease-in-out infinite; }
+@keyframes glowPulse { 50% { opacity: .6; } }
+.a6-frame { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #6a3b1f; border-radius: 60px 60px 0 0; padding: 8px 8px 0; }
+.a6-light { position: absolute; top: 8px; right: 8px; bottom: 0; left: 8px; border-radius: 52px 52px 0 0; background: linear-gradient(#fff3cf, #ffd98a); }
+.a6-door { position: absolute; top: 8px; right: 8px; bottom: 0; left: 8px; border-radius: 52px 52px 0 0; background: linear-gradient(90deg, #b9733f, #a8683a); border: 2px solid #6a3b1f; transform-origin: 0 50%; transition: transform 1s cubic-bezier(.4,0,.2,1); display: grid; place-items: center; box-shadow: inset -6px 0 0 rgba(0,0,0,.12); }
+.a6-door b { font-size: 34px; color: #ffe2a0; text-shadow: 0 0 12px #ffd98a; }
+.a6-door i { position: absolute; right: 10px; top: 56%; width: 9px; height: 9px; border-radius: 50%; background: #f2c94d; border: 1.5px solid #6a3b1f; }
+.a6-doorwrap::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 5px; background: #ffe2a0; box-shadow: 0 0 16px 6px rgba(255,226,160,.8); }
+.a6-doorwrap.ready .a6-door { animation: doorPeek 1.8s ease-in-out infinite; }
+@keyframes doorPeek { 50% { transform: perspective(500px) rotateY(-10deg); } }
+.a6-doorwrap.open .a6-door { transform: perspective(500px) rotateY(-78deg); }
+/* 不只依赖 backface-visibility（WebKit 在祖先有动画时会失效）：翻到一半时显式切换正反面 */
+.a6-card .back, .a2-card .back { visibility: hidden; transition: visibility 0s .38s; }
+.a6-card .front, .a2-card .front { visibility: visible; transition: visibility 0s .38s; }
+.a6-flip.flipped .back, .a2-flip.flipped .back { visibility: visible; }
+.a6-flip.flipped .front, .a2-flip.flipped .front { visibility: hidden; }
+
+.a6-wallph { width: 58px; z-index: 3; }
+.a6-letter p:last-of-type { padding-right: 38px; }
+.a6-hall { position: absolute; pointer-events: none; font-family: inherit; }

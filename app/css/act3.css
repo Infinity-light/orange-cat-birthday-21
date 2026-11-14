@@ -1,0 +1,72 @@
+/* ================= 第三幕 胶卷 ================= */
+.act3 { background: #1c1712; touch-action: none; }
+.a3-bg { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background:
+  repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 39px),
+  repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 39px),
+  linear-gradient(#26433a, #1d332c); }
+.a3-light { position: absolute; left: 0; right: 0; background: linear-gradient(transparent, rgba(255,236,190,.5) 14%, #fff3d6 30%, #fff3d6 70%, rgba(255,236,190,.5) 86%, transparent); }
+.a3-film { position: absolute; left: 0; will-change: transform; background:
+  repeating-linear-gradient(90deg, transparent 0 7px, #fff3d6 7px 19px, transparent 19px 26px) 0 6px / 26px 9px repeat-x,
+  repeating-linear-gradient(90deg, transparent 0 7px, #fff3d6 7px 19px, transparent 19px 26px) 0 calc(100% - 6px) / 26px 9px repeat-x,
+  linear-gradient(#2a1d13, #1f150d); box-shadow: 0 6px 18px rgba(0,0,0,.4); }
+.a3-film::before { content: ""; position: absolute; left: -400px; top: 0; bottom: 0; width: 400px; background: linear-gradient(90deg, transparent, #2a1d13 60%); }
+.a3-frame { position: absolute; background: #0e0a06; border-radius: 3px; overflow: visible; }
+.a3-frame img { display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 3px; pointer-events: none; }
+.a3-no { display: none; position: absolute; left: 2px; top: -19px; font: 11px/1 ui-monospace, Menlo, Consolas, monospace; color: #f2a04a; letter-spacing: .08em; white-space: nowrap; opacity: .9; }
+.a3-fog { position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%; height: 100%; border-radius: 3px; touch-action: none; }
+.a3-leader { position: absolute; color: #f3e6cb; font-size: 22px; letter-spacing: .08em; transform: rotate(-3deg); opacity: .9; white-space: nowrap; }
+.a3-leader small { display: block; margin-top: 10px; font-size: 14px; color: #f2a04a; letter-spacing: .2em; animation: leadArrow 1.6s ease-in-out infinite; }
+@keyframes leadArrow { 50% { transform: translateX(-10px); } }
+.a3-end { position: absolute; top: 0; bottom: 0; width: 700px; background: #1c1712; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 92%, 2px 80%, 14px 68%, 4px 55%, 12px 42%, 0 30%, 9px 16%); background: linear-gradient(#26433a, #1d332c); }
+.a3-catlayer { position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; }
+.a3-panel { position: absolute; left: 20px; right: 20px; }
+.a3-paper { position: relative; max-height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; background: var(--paper); border-radius: 3px; padding: 14px 18px 14px; box-shadow: 0 8px 22px rgba(0,0,0,.4); font-size: 16.5px; line-height: 1.75; transform-origin: 50% 0; background-image: repeating-linear-gradient(0deg, transparent 0 28px, rgba(74,44,23,.06) 28px 29px); }
+.a3-paper[hidden] { display: none; }
+.a3-paper.in { animation: unfold .5s cubic-bezier(.2,.9,.3,1.1) both; }
+.a3-paper.fold { opacity: 0; transform: scaleY(.6); transition: opacity .22s, transform .22s; }
+@keyframes unfold { from { opacity: 0; transform: perspective(600px) rotateX(-60deg); } to { opacity: 1; transform: none; } }
+.a3-paper p { margin: 0 0 8px; }
+.a3-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+.a3-head b { font-size: 19px; font-weight: 600; }
+.a3-date { font-size: 13px; padding: 1px 9px; background: var(--green); color: var(--paper); border-radius: 2px; letter-spacing: .1em; }
+.a3-more.in { animation: moreIn .7s ease both; }
+.a3-more[hidden] { display: none; }
+@keyframes moreIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.a3-more { border-top: 1px dashed rgba(74,44,23,.35); padding-top: 8px; margin-top: 4px; }
+.a3-q { font-size: 15px; color: var(--ink2); }
+.a3-items { display: flex; gap: 10px; margin: 4px 0 8px; }
+.a3-items button { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px 8px; background: #fff; border: 1.5px solid rgba(74,44,23,.45); border-radius: 10px; font-size: 14px; min-height: 84px; }
+.a3-items svg { width: 46px; height: 46px; }
+.a3-items button.tried { opacity: .5; }
+.a3-items button.right { border-color: var(--green2); background: #eaf4ea; box-shadow: 0 0 0 2px var(--green2); }
+.a3-inter.done .a3-items button:not(.right) { opacity: .35; }
+.a3-say { font-size: 15px; color: var(--green2); }
+.a3-say[hidden] { display: none; }
+.a3-folded { position: relative; display: block; width: 100%; padding: 16px 12px; margin: 4px 0 8px; background: #ffe9a8; border: 0; font-size: 15px; color: var(--ink2); box-shadow: 0 3px 8px rgba(0,0,0,.18); transform: rotate(-1deg); }
+.a3-folded i { position: absolute; right: 0; top: 0; border-style: solid; border-width: 0 22px 22px 0; border-color: transparent var(--paper) #e6c96f transparent; }
+.a3-folded::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; border-top: 1px dashed rgba(74,44,23,.35); }
+.a3-unfold { background: #ffe9a8; padding: 12px 14px; margin: 4px 0 8px; box-shadow: 0 3px 8px rgba(0,0,0,.18); transform-origin: 50% 0; animation: unfold .6s ease both; }
+.a3-quote { font-size: 18px; line-height: 1.8; color: var(--ink); }
+.a3-unfold .a3-quote { margin: 0; }
+.a3-nav { position: absolute; left: 0; right: 0; height: 0; z-index: 6; pointer-events: none; }
+.a3-nav button { position: absolute; top: 0; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(74,44,23,.6); background: rgba(251,243,226,.9); color: var(--ink); font-size: 24px; line-height: 1; padding: 0 0 4px; pointer-events: auto; box-shadow: 0 3px 8px rgba(0,0,0,.35); }
+.a3-nav button[hidden] { display: none; }
+.a3-nav button[data-d="-1"] { left: 6px; } .a3-nav button[data-d="1"] { right: 6px; }
+.a3-ticket { position: absolute; width: 280px; padding: 0; border: 0; background: #f6ecd3; color: var(--ink); text-align: left; box-shadow: 0 8px 20px rgba(0,0,0,.45); border-radius: 6px; z-index: 30; overflow: hidden; -webkit-mask: radial-gradient(circle 9px at 0 62px, transparent 98%, #000) , radial-gradient(circle 9px at 100% 62px, transparent 98%, #000); -webkit-mask-composite: source-in; mask-composite: intersect; }
+.tk-top { display: flex; justify-content: space-between; padding: 8px 16px; background: var(--red); color: #fff3df; font-size: 13px; letter-spacing: .14em; }
+.tk-route { display: flex; align-items: center; justify-content: space-between; padding: 16px 16px 8px; font-size: 21px; white-space: nowrap; }
+.tk-route b { font-weight: 600; }
+.tk-bottom { display: flex; justify-content: space-between; gap: 10px; padding: 4px 16px 12px; font-size: 12.5px; color: var(--ink2); border-bottom: 1.5px dashed rgba(74,44,23,.4); }
+.tk-map { display: block; width: 280px; height: 0; opacity: 0; transition: height .9s cubic-bezier(.3,.8,.3,1), opacity .6s .3s; background: #ecdfc2; }
+.a3-ticket.open .tk-map { height: 150px; opacity: 1; }
+.tk-path { stroke-dasharray: 1 9; }
+.a3-ticket .tk-dots circle { opacity: 0; transform-origin: center; transform-box: fill-box; }
+.a3-ticket.open .tk-dots circle { animation: dotIn .4s cubic-bezier(.3,1.6,.5,1) both; }
+.a3-ticket.open .tk-dots circle:nth-child(1) { animation-delay: .7s; } .a3-ticket.open .tk-dots circle:nth-child(2) { animation-delay: .95s; }
+.a3-ticket.open .tk-dots circle:nth-child(3) { animation-delay: 1.2s; } .a3-ticket.open .tk-dots circle:nth-child(4) { animation-delay: 1.45s; }
+.a3-ticket.open .tk-dots circle:nth-child(5) { animation-delay: 1.7s; }
+@keyframes dotIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+
+.a3-cue { position: absolute; left: 50%; bottom: -12px; transform: translateX(-50%); font-style: normal; font-size: 12.5px; padding: 3px 12px; border-radius: 999px; background: var(--green2); color: var(--paper); box-shadow: 0 2px 6px rgba(0,0,0,.3); animation: cueBob 1.4s ease-in-out infinite; pointer-events: none; white-space: nowrap; }
+.a3-cue[hidden] { display: none; }
+@keyframes cueBob { 50% { transform: translateX(-50%) translateY(3px); } }

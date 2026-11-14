@@ -1,0 +1,57 @@
+/* ================= 第五幕 小卖部 ================= */
+.act5 { background: #2f5a4f; }
+.a5-wall { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background:
+  radial-gradient(80% 50% at 50% 30%, rgba(255,226,160,.38), transparent 75%),
+  repeating-linear-gradient(90deg, rgba(0,0,0,.06) 0 1px, transparent 1px 48px),
+  linear-gradient(#35655a, #284b42); }
+.a5-floor { position: absolute; left: 0; right: 0; bottom: 0; background:
+  repeating-linear-gradient(90deg, rgba(90,50,20,.1) 0 2px, transparent 2px 78px),
+  linear-gradient(#c8935c, #a97746); border-top: 5px solid #e2b27c; }
+.a5-lights { position: absolute; left: 0; top: 34px; }
+.a5-lights .bl { animation: twinkle 1.6s ease-in-out infinite; }
+.a5-lights .bl:nth-child(2n) { animation-delay: .8s; }
+.a5-shelf { position: absolute; left: 14px; right: 14px; height: 104px; display: flex; justify-content: space-around; align-items: flex-end; padding: 0 4px 9px; border-bottom: 9px solid #a8683a; box-shadow: 0 4px 0 #6a3b1f, 0 14px 14px rgba(0,0,0,.22); z-index: 3; }
+.a5-shelf::before, .a5-shelf::after { content: ""; position: absolute; bottom: -30px; width: 8px; height: 22px; background: #6a3b1f; }
+.a5-shelf::before { left: 22px; } .a5-shelf::after { right: 22px; }
+.a5-item { position: relative; width: 78px; height: 96px; border: 0; background: transparent; padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.a5-item svg { width: 58px; height: 68px; display: block; filter: drop-shadow(0 3px 2px rgba(0,0,0,.25)); }
+.a5-item span { position: absolute; bottom: -31px; font-size: 12.5px; padding: 1px 7px; background: var(--paper); border: 1px solid rgba(74,44,23,.5); border-radius: 2px; white-space: nowrap; color: var(--ink); }
+.a5-item::after { content: ""; position: absolute; left: 50%; top: 40%; width: 44px; height: 44px; margin: -22px; border-radius: 50%; border: 2px solid #fff7e8; animation: ring 1.9s ease-out infinite; pointer-events: none; }
+.a5-item:nth-child(2)::after { animation-delay: .4s; } .a5-item:nth-child(3)::after { animation-delay: .8s; } .a5-item:nth-child(4)::after { animation-delay: 1.2s; }
+.a5-item.seen::after { display: none; }
+.a5-item:active svg { transform: translateY(-4px) rotate(-4deg); }
+
+.a5-machine { position: absolute; left: 62px; width: 240px; height: 316px; background: #d2553d; border: 2.5px solid #6a3b1f; border-radius: 26px 26px 10px 10px; box-shadow: inset 0 -30px 0 rgba(0,0,0,.12), inset 8px 0 0 rgba(255,255,255,.12), 0 10px 0 -2px rgba(0,0,0,.2); z-index: 5; }
+.a5-machine::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: -14px; height: 14px; background: #6a3b1f; border-radius: 0 0 8px 8px; }
+.a5-marquee { margin: 12px 18px 0; height: 44px; border-radius: 22px; background: var(--paper); border: 2px solid #6a3b1f; display: grid; place-items: center; box-shadow: 0 0 0 4px #f2c94d, 0 0 0 6px #6a3b1f; }
+.a5-marquee b { font-size: 21px; letter-spacing: .22em; color: #b8432e; font-weight: 600; padding-left: .22em; }
+.a5-face { margin: 16px 14px 0; padding: 10px 8px 8px; background: #f8efdc; border: 2px solid #6a3b1f; border-radius: 10px; }
+.a5-wins { display: flex; gap: 6px; align-items: center; justify-content: center; }
+.a5-yuan { font-style: normal; font-size: 24px; color: #b8432e; width: 26px; text-align: center; }
+.a5-win { width: 52px; height: 132px; overflow: hidden; background: #fffdf6; border: 2px solid #6a3b1f; border-radius: 6px; box-shadow: inset 0 10px 10px -6px rgba(0,0,0,.35), inset 0 -10px 10px -6px rgba(0,0,0,.35); }
+.a5-reel { will-change: transform; }
+.a5-reel span { display: flex; align-items: center; justify-content: center; height: 132px; writing-mode: vertical-rl; -webkit-writing-mode: vertical-rl; font-size: 18px; letter-spacing: .08em; color: var(--ink); white-space: nowrap; }
+.a5-plate { margin-top: 8px; text-align: center; font-size: 12px; letter-spacing: .14em; color: var(--ink2); }
+.a5-out { position: absolute; left: 50%; bottom: 14px; width: 150px; height: 26px; margin-left: -75px; background: #b8432e; border: 2px solid #6a3b1f; border-radius: 6px; }
+.a5-slit { position: absolute; left: 10px; right: 10px; top: 8px; height: 7px; background: #2a1a10; border-radius: 3px; }
+.a5-lever { position: absolute; right: -44px; top: 70px; width: 48px; height: 150px; touch-action: none; --pull: 0px; }
+.a5-stick { position: absolute; left: 4px; bottom: 16px; width: 9px; height: 96px; background: #cfc7b4; border: 2px solid #6a3b1f; border-radius: 4px; transform-origin: 50% 100%; transform: rotate(18deg) scaleY(calc(1 - var(--pull) / 110px)); transition: transform .25s; }
+.a5-ball { position: absolute; left: 20px; top: 16px; width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #ffb38a, #d2553d 60%); border: 2px solid #6a3b1f; transform: translateY(var(--pull)); transition: transform .25s; }
+.a5-lever::before { content: ""; position: absolute; left: -6px; bottom: 4px; width: 26px; height: 22px; background: #6a3b1f; border-radius: 4px; }
+.a5-lever::after { content: ""; position: absolute; left: 14px; top: 10px; width: 44px; height: 44px; border-radius: 50%; border: 2px solid #fff7e8; animation: ring 1.7s ease-out infinite; pointer-events: none; }
+.a5-lever.down .a5-ball { transform: translateY(72px); } .a5-lever.down .a5-stick { transform: rotate(18deg) scaleY(.3); }
+.a5-tag { position: absolute; left: 30px; right: 30px; top: 46%; background: #ffe9a8; padding: 16px 16px 12px; box-shadow: 0 10px 24px rgba(8,6,2,.45); transform: rotate(-1.2deg); z-index: 30; font-size: 16px; line-height: 1.7; }
+.a5-tag[hidden], .a5-result[hidden], .a5-card[hidden] { display: none; }
+.a5-tag.in { animation: noteIn .4s cubic-bezier(.3,1.3,.5,1) both; }
+.a5-tag b { display: inline-block; font-size: 13px; padding: 1px 8px; background: var(--ink); color: #ffe9a8; border-radius: 2px; letter-spacing: .1em; font-weight: 500; }
+.a5-tag p { margin: 8px 0 10px; } .a5-tag .btn { float: right; }
+.a5-result { position: absolute; left: 16px; right: 16px; z-index: 25; background: var(--paper); border-radius: 6px; padding: 14px 14px 14px; text-align: center; box-shadow: 0 10px 26px rgba(8,6,2,.45); }
+.a5-result.in { animation: paperIn .45s ease both; }
+.a5-result p { margin: 0 0 12px; font-size: 19px; line-height: 1.6; color: #b8432e; }
+.a5-result div { display: flex; gap: 10px; justify-content: center; }
+.a5-card { position: absolute; width: 120px; height: 78px; z-index: 13; border: 0; background: #f1e3c4; border-radius: 5px; box-shadow: 0 3px 8px rgba(0,0,0,.35); display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--ink); background-image: repeating-linear-gradient(45deg, rgba(210,85,61,.12) 0 6px, transparent 6px 12px); outline: 1.5px solid #6a3b1f; outline-offset: -5px; }
+.a5-card span { font-size: 11px; letter-spacing: .3em; } .a5-card b { font-size: 26px; line-height: 1; color: #b8432e; } .a5-card em { font-style: normal; font-size: 10px; letter-spacing: .2em; color: var(--ink2); }
+.a5-card.ready::after { content: ""; position: absolute; top: -8px; right: -8px; bottom: -8px; left: -8px; border-radius: 10px; border: 2px solid #fff7e8; animation: stripGlow 1.4s ease-in-out infinite; }
+.a5-decor { position: absolute; pointer-events: none; z-index: 2; font-family: inherit; }
+.a5-leaf { transform-origin: 26px 30px; animation: a5Leaf 6s ease-in-out infinite; }
+@keyframes a5Leaf { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2.5deg); } }

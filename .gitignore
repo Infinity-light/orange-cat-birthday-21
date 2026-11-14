@@ -1,0 +1,7 @@
+node_modules/
+shots/
+demo/
+__pycache__/
+.publish/
+*.ttf
+.DS_Store

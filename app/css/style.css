@@ -1,0 +1,170 @@
+/* 21 岁生日小橘猫 · 样式
+   视觉体系：牛皮纸 / 相纸 / 切割垫墨绿 / 小猫橘 / 夜色蓝。所有尺寸按 390 宽的逻辑舞台写。 */
+@font-face {
+  font-family: "Wenkai";
+  src: url("../assets/fonts/wenkai-subset.woff2") format("woff2");
+  font-display: swap;
+}
+:root {
+  --green: #2c4a40; --green2: #3a6254; --green3: #244037;
+  --kraft: #c9a06c; --kraft-d: #a67c49; --kraft-l: #e2c497;
+  --paper: #fbf3e2; --paper2: #f3e6cb;
+  --ink: #4a2c17; --ink2: #7a5638;
+  --orange: #f29a3f; --red: #d2553d; --night: #26324a;
+  --hand: "Wenkai", "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", "AR PL UKai CN", "Songti SC", "Noto Serif CJK SC", serif;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; overflow: hidden; background: #1c2f29; overscroll-behavior: none; }
+body {
+  font-family: var(--hand); color: var(--ink); -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; touch-action: none;
+  background: radial-gradient(120% 90% at 50% 40%, #2a463d 0%, #18281f 100%);
+}
+button { font-family: inherit; color: inherit; cursor: pointer; -webkit-appearance: none; appearance: none; }
+img { -webkit-user-drag: none; }
+
+#stage { position: fixed; left: 0; top: 0; transform-origin: 0 0; overflow: hidden; background: var(--green); box-shadow: 0 0 80px rgba(0,0,0,.45); }
+#acts, .act { position: absolute; top: 0; right: 0; bottom: 0; left: 0; overflow: hidden; }
+.act { will-change: transform; }
+#veil { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: var(--green); opacity: 1; pointer-events: none; z-index: 50; }
+#ui { position: absolute; top: 0; right: 0; bottom: 0; left: 0; pointer-events: none; z-index: 60; }
+#ui > * { pointer-events: auto; }
+.world { position: absolute; left: 0; top: 0; width: 390px; height: 100%; transform-origin: 0 0; will-change: transform; }
+
+/* 小猫 */
+.cat { position: absolute; left: 0; top: 0; width: 0; height: 0; z-index: 20; pointer-events: none; will-change: transform; }
+.cat-inner { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+.cat-svg { position: absolute; display: block; overflow: visible; }
+
+/* 顶部按钮 */
+.topbar { position: absolute; right: 10px; top: calc(10px + var(--safe-t)); display: flex; gap: 8px; z-index: 5; }
+.topbar button { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(74,44,23,.55); background: rgba(251,243,226,.92); color: var(--ink); display: grid; place-items: center; padding: 0; box-shadow: 0 2px 0 rgba(74,44,23,.25); }
+.topbar button:active { transform: translateY(1px); }
+#btn-sound .mute { display: none; } #btn-sound.off .mute { display: block; } #btn-sound.off .wave { display: none; }
+#btn-sound.off { color: #9a7c62; }
+
+/* 通用按钮 */
+.btn { font-size: 16px; line-height: 1; padding: 13px 20px; min-height: 46px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: 0 3px 0 rgba(74,44,23,.28); letter-spacing: .04em; }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(74,44,23,.28); }
+.btn.primary { background: var(--orange); color: #3c200c; border-color: #6a3b1f; }
+.btn.small { font-size: 14px; padding: 9px 14px; min-height: 40px; }
+.btn[disabled] { opacity: .4; }
+
+/* 手势提示条 */
+.hint { position: absolute; left: 50%; bottom: calc(18px + var(--safe-b)); transform: translateX(-50%); display: flex; align-items: center; gap: 8px; max-width: 366px; padding: 7px 8px 7px 12px; border-radius: 999px; background: rgba(251,243,226,.96); border: 1.5px solid rgba(74,44,23,.6); box-shadow: 0 4px 14px rgba(20,12,4,.28); font-size: 15px; white-space: nowrap; }
+.hint[hidden], .caption[hidden], .cta[hidden] { display: none; }
+.hint.in { animation: hintIn .45s cubic-bezier(.3,1.4,.5,1) both; }
+.hint-hand { display: grid; place-items: center; animation: handBob 1.6s ease-in-out infinite; }
+.hint-text { padding-right: 6px; }
+.hint-alt { font-size: 13.5px; padding: 8px 12px; min-height: 36px; border-radius: 999px; border: 1.5px dashed rgba(74,44,23,.7); background: #fff; color: var(--ink2); }
+.hint-alt[hidden] { display: none; }
+@keyframes hintIn { from { opacity: 0; transform: translateX(-50%) translateY(14px); } to { opacity: 1; transform: translateX(-50%); } }
+@keyframes handBob { 0%,100% { transform: translateY(0) rotate(-8deg); } 50% { transform: translateY(4px) rotate(-8deg); } }
+
+/* 旁白纸条 */
+.caption { position: absolute; left: 22px; right: 22px; top: calc(62px + var(--safe-t)); padding: 12px 16px; background: var(--paper); border-radius: 3px; font-size: 16px; line-height: 1.7; color: var(--ink); box-shadow: 0 6px 16px rgba(20,12,4,.25); transform: rotate(-.6deg); }
+.caption::before { content: ""; position: absolute; left: 50%; top: -9px; width: 64px; height: 18px; margin-left: -32px; background: rgba(242,154,63,.75); transform: rotate(-2deg); }
+.caption.in { animation: capIn .5s ease both; }
+@keyframes capIn { from { opacity: 0; transform: translateY(-10px) rotate(-.6deg); } to { opacity: 1; transform: rotate(-.6deg); } }
+
+/* 继续按钮 */
+.cta { position: absolute; left: 50%; bottom: calc(74px + var(--safe-b)); transform: translateX(-50%); font-size: 17px; padding: 14px 30px; min-height: 50px; border-radius: 999px; border: 1.5px solid #6a3b1f; background: var(--orange); color: #3c200c; box-shadow: 0 4px 0 rgba(74,44,23,.4), 0 8px 18px rgba(20,12,4,.25); letter-spacing: .08em; white-space: nowrap; }
+.cta.in { animation: ctaIn .5s cubic-bezier(.3,1.4,.5,1) both; }
+.cta:active { margin-bottom: -2px; box-shadow: 0 2px 0 rgba(74,44,23,.4); }
+@keyframes ctaIn { from { opacity: 0; transform: translateX(-50%) translateY(16px) scale(.9); } to { opacity: 1; transform: translateX(-50%); } }
+
+/* 幕标题卡 */
+.chapter-card { position: absolute; left: 14px; top: calc(12px + var(--safe-t)); padding: 7px 14px 7px 12px; background: rgba(251,243,226,.94); border-left: 4px solid var(--orange); border-radius: 2px; font-size: 13px; color: var(--ink2); box-shadow: 0 3px 10px rgba(20,12,4,.2); animation: chIn .6s ease both; pointer-events: none !important; max-width: 270px; }
+.chapter-card b { display: block; font-size: 16px; color: var(--ink); font-weight: 600; margin-top: 1px; }
+.chapter-card.out { opacity: 0; transition: opacity .6s; }
+@keyframes chIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; } }
+
+/* 阅读纸 */
+.reader { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 20; display: grid; place-items: center; }
+.reader-scrim { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(24,18,10,.55); animation: fadeIn .3s both; }
+.reader-paper { position: relative; width: 340px; max-height: calc(var(--H) - 90px); display: flex; flex-direction: column; background: var(--paper); border-radius: 4px; padding: 22px 22px 18px; box-shadow: 0 16px 40px rgba(10,6,2,.45); animation: paperIn .45s cubic-bezier(.2,.9,.3,1.15) both; background-image: repeating-linear-gradient(0deg, transparent 0 31px, rgba(74,44,23,.07) 31px 32px); }
+.reader-body { overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; font-size: 17px; line-height: 32px; }
+.reader-body h3 { margin: 0 0 8px; font-size: 20px; line-height: 32px; }
+.reader-body p { margin: 0 0 16px; }
+.reader-body .ph { display: block; width: 100%; aspect-ratio: 4/3; object-fit: cover; border: 8px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.2); margin: 4px 0 16px; background: #ddd; }
+.reader-close { align-self: center; margin-top: 12px; flex: none; }
+.reader.out { opacity: 0; transition: opacity .3s; pointer-events: none; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes paperIn { from { opacity: 0; transform: translateY(30px) rotate(2deg) scale(.96); } to { opacity: 1; transform: none; } }
+
+/* 目录 */
+.menu { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 40; display: grid; place-items: center; }
+.menu-scrim { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(20,30,26,.72); animation: fadeIn .25s both; }
+.menu-paper { position: relative; width: 340px; max-height: calc(var(--H) - 40px); overflow-y: auto; touch-action: pan-y; background: var(--paper); border-radius: 6px; padding: 18px 18px 16px; box-shadow: 0 16px 40px rgba(0,0,0,.5); animation: paperIn .35s ease both; display: flex; flex-direction: column; gap: 10px; }
+.menu-paper h2 { margin: 0; font-size: 21px; }
+.menu-sub { margin: 4px 0 0; font-size: 13.5px; color: var(--ink2); line-height: 1.6; }
+.menu-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.menu-list { display: flex; flex-direction: column; gap: 6px; }
+.menu-ch { display: grid; grid-template-columns: 58px 1fr auto; align-items: center; gap: 6px; text-align: left; padding: 10px 10px; min-height: 46px; background: #fff; border: 1.5px solid rgba(74,44,23,.35); border-radius: 8px; font-size: 13px; color: var(--ink2); }
+.menu-ch b { font-size: 15px; color: var(--ink); font-weight: 500; }
+.menu-ch i { font-style: normal; font-size: 12px; color: var(--green2); }
+.menu-ch.now { border-color: var(--orange); background: #fff6e6; }
+.menu-ch.locked { opacity: .45; background: transparent; border-style: dashed; }
+.err { position: absolute; left: 30px; right: 30px; top: 40%; background: #fff; padding: 16px; border-radius: 8px; font-size: 14px; line-height: 1.8; text-align: center; z-index: 80; }
+
+/* 拍立得（多幕共用） */
+.polaroid { position: absolute; background: #fffdf6; padding: 0; box-shadow: 0 3px 10px rgba(20,12,4,.3); border-radius: 2px; }
+.polaroid img { display: block; width: 86%; margin: 7% 7% 0; aspect-ratio: 1/1; object-fit: cover; background: #cfd3cf; }
+.polaroid::after { content: ""; display: block; padding-bottom: 24%; }
+
+/* ================= 第一幕 ================= */
+.act1 { background: var(--green); }
+.a1-wall { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background:
+  radial-gradient(90% 60% at 50% 34%, rgba(255,226,170,.22), transparent 70%),
+  repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 39px),
+  linear-gradient(#335a4d, #2a473d); }
+.a1-desk { position: absolute; left: -400px; right: -400px; bottom: 0; background:
+  repeating-linear-gradient(90deg, rgba(90,50,20,.07) 0 2px, transparent 2px 67px, rgba(255,255,255,.05) 67px 69px, transparent 69px 143px),
+  linear-gradient(#d8a873 0, #c8935c 30%, #b98351 100%); border-top: 5px solid #e9c08d; box-shadow: 0 -10px 30px rgba(10,20,15,.35); }
+.a1-gift { position: absolute; overflow: visible; }
+.a1-gift.wiggle { animation: giftWiggle 4.2s ease-in-out infinite; transform-origin: 50% 100%; }
+@keyframes giftWiggle { 0%, 78%, 100% { transform: none; } 81% { transform: rotate(-1.6deg) translateX(-2px); } 84% { transform: rotate(1.4deg) translateX(2px); } 87% { transform: rotate(-.8deg); } 90% { transform: rotate(.5deg) translateY(-2px); } 93% { transform: none; } }
+.a1-tag { position: absolute; width: 158px; padding: 12px 12px 12px 30px; background: var(--paper); border-radius: 4px; transform: rotate(-7deg); transform-origin: 12px 50%; box-shadow: 0 3px 8px rgba(10,10,5,.3); font-size: 22px; line-height: 1.25; color: var(--ink); clip-path: polygon(14px 0, 100% 0, 100% 100%, 14px 100%, 0 50%); z-index: 3; }
+.a1-tag small { display: block; font-size: 13.5px; color: var(--ink2); margin-top: 4px; letter-spacing: .04em; }
+.a1-tag::before { content: ""; position: absolute; left: 12px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: var(--green); box-shadow: inset 0 1px 2px rgba(0,0,0,.5); }
+.a1-tagwrap { position: absolute; animation: tagSwing 5s ease-in-out infinite; transform-origin: 100% 100%; z-index: 3; }
+@keyframes tagSwing { 0%,100% { transform: rotate(0); } 50% { transform: rotate(2.5deg); } }
+.a1-tab { position: absolute; width: 110px; height: 110px; margin: -45px 0 0 -55px; z-index: 30; touch-action: none; cursor: grab; }
+.a1-tab::after { content: ""; position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px; border-radius: 50%; border: 2px solid rgba(255,247,232,.9); animation: ring 1.7s ease-out infinite; pointer-events: none; }
+.a1-tab.grabbed::after, .a1-tab.done::after { display: none; }
+@keyframes ring { from { transform: scale(.5); opacity: 1; } to { transform: scale(1.5); opacity: 0; } }
+.a1-paw { position: absolute; z-index: 30; border-radius: 50%; }
+.a1-paw::after { content: ""; position: absolute; top: 18%; right: 18%; bottom: 18%; left: 18%; border-radius: 50%; border: 2px solid rgba(255,247,232,.95); animation: ring 1.7s ease-out infinite; }
+.a1-photo { width: 92px; z-index: 1; transform: rotate(8deg); }
+.a1-scrap { position: absolute; z-index: 25; background: #ecd9b3; pointer-events: none; }
+.a1-ask { position: absolute; left: 20px; right: 20px; bottom: calc(18px + var(--safe-b)); background: var(--paper); border-radius: 6px; padding: 16px 16px 16px; box-shadow: 0 10px 30px rgba(10,6,2,.45); z-index: 40; text-align: center; animation: paperIn .5s .3s ease both; }
+.a1-ask p { margin: 0 0 12px; font-size: 15px; line-height: 1.7; color: var(--ink2); }
+.a1-ask .row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.a1-ask .resume { margin-top: 12px; padding-top: 12px; border-top: 1px dashed rgba(74,44,23,.35); }
+
+.a1-flags { position: absolute; left: 0; top: 40px; }
+.a1-title { position: absolute; left: 0; right: 0; text-align: center; font-size: 30px; line-height: 1.45; letter-spacing: .14em; color: #f6ecd3; text-shadow: 0 2px 0 rgba(0,0,0,.18); transition: opacity .8s, transform .8s; }
+.a1-title small { display: block; font-size: 13px; letter-spacing: .4em; opacity: .7; margin-bottom: 6px; }
+.a1-title.gone { opacity: 0; transform: translateY(-10px); }
+
+.reader-body video.ph { aspect-ratio: 1/1; background: #1a2440; object-fit: cover; }
+
+/* 全局一层很淡的纸纹颗粒（静态背景图，只栅格化一次），让七幕像同一本纪念册 */
+#stage::after { content: ""; position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 55; pointer-events: none; opacity: .55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .25  0 0 0 0 .16  0 0 0 0 .08  0 0 0 .5 -.14'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 180px 180px; }
+
+.a1-eyesin { animation: eyesBlink 3.4s infinite; transform-box: fill-box; transform-origin: 50% 50%; }
+@keyframes eyesBlink { 0%, 44%, 50%, 92%, 100% { transform: scaleY(1); } 47% { transform: scaleY(.08); } 95% { transform: scaleY(.08); } }
+/* 手机横过来时（矮而宽的触屏）：盖一层提示，请对方竖过来；桌面宽屏不受影响 */
+#rotate { display: none; position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 9999; background: #2c4a40; color: #f6ecd3; align-items: center; justify-content: center; gap: 18px; text-align: left; font-size: 18px; line-height: 1.7; letter-spacing: .08em; }
+#rotate small { font-size: 13px; opacity: .7; }
+#rotate svg { animation: rotHint 2.4s ease-in-out infinite; }
+@keyframes rotHint { 0%, 30% { transform: rotate(90deg); } 60%, 100% { transform: rotate(0); } }
+@media (orientation: landscape) and (max-height: 520px) and (pointer: coarse) { #rotate { display: flex; } }
+/* 场景里的图片不接收触摸：安卓微信里长按图片会弹「保存图片/识别」菜单，打断拖动。事件落到外层容器上。纪念卡和回忆册的图片除外（要能长按保存）。 */
+#stage img { pointer-events: none; -webkit-user-drag: none; }
+#stage .keep-img img, #stage .album img { pointer-events: auto; }
+.reader-cue { position: absolute; left: 50%; bottom: 70px; transform: translateX(-50%); font-style: normal; font-size: 12.5px; padding: 3px 12px; border-radius: 999px; background: var(--green2); color: var(--paper); box-shadow: 0 2px 6px rgba(0,0,0,.3); animation: cueBob 1.4s ease-in-out infinite; pointer-events: none; white-space: nowrap; }
+.reader-cue[hidden] { display: none; }

@@ -1,0 +1,64 @@
+/* ================= 第二幕 小猫照相馆 ================= */
+.a2-sign { position: absolute; left: 50%; width: 190px; margin-left: -95px; padding: 12px 10px 10px; text-align: center; background: var(--paper); border-radius: 3px; box-shadow: 0 4px 10px rgba(8,14,10,.35); transform: rotate(-1.5deg); }
+.a2-sign span { display: block; font-size: 23px; letter-spacing: .12em; }
+.a2-sign small { display: block; margin-top: 3px; font-size: 12.5px; color: var(--ink2); letter-spacing: .2em; }
+.a2-sign i { position: absolute; top: -60px; width: 1.5px; height: 62px; background: rgba(243,230,203,.6); }
+.a2-sign i:first-child { left: 26px; } .a2-sign i:nth-child(2) { right: 26px; }
+.a2-props { position: absolute; pointer-events: none; }
+.a2-old { width: 78px; transform: rotate(7deg); z-index: 2; }
+.a2-camwrap { position: absolute; width: 210px; height: 170px; z-index: 6; }
+.a2-cam { position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; }
+.a2-camwrap.pressed .shutter { transform: translateY(5px); }
+.a2-slot { position: absolute; left: 45px; top: 146px; width: 120px; height: 160px; overflow: hidden; z-index: 1; touch-action: none; }
+.a2-eject { position: relative; width: 120px; transform: translateY(-160px); }
+.a2-eject.undeveloped img { filter: brightness(.25) sepia(.6) contrast(.4); opacity: .9; }
+.a2-white { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #fff8e6; opacity: 0; pointer-events: none; z-index: 28; }
+.a2-kept { width: 78px; z-index: 3; }
+.a2-reader { position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 30; }
+.a2-scrim { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: rgba(22,30,24,.6); animation: fadeIn .4s both; }
+.a2-reader.closing .a2-scrim { opacity: 0; transition: opacity .4s; animation: none; }
+.a2-card { position: absolute; left: 45px; width: 300px; height: 404px; perspective: 1100px; z-index: 2; touch-action: none; }
+.a2-flip { position: absolute; top: 0; right: 0; bottom: 0; left: 0; transform-style: preserve-3d; -webkit-transform-style: preserve-3d; transition: transform .7s cubic-bezier(.4,0,.2,1); }
+.a2-flip.flipped { transform: rotateY(180deg); }
+.a2-card .face { position: absolute; top: 0; right: 0; bottom: 0; left: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: #fffdf6; border-radius: 3px; box-shadow: 0 12px 30px rgba(8,6,2,.45); padding: 14px 14px 0; }
+.a2-card .back { transform: rotateY(180deg); background: #f6ecd6; background-image: repeating-linear-gradient(0deg, transparent 0 33px, rgba(74,44,23,.1) 33px 34px); padding: 26px 24px; font-size: 17px; line-height: 34px; }
+.a2-card .back p { margin: 12px 0 0; }
+.a2-card .date { font-size: 13px; letter-spacing: .12em; color: var(--ink2); }
+.a2-card .imgwrap { position: relative; width: 272px; height: 272px; background: #23262a; overflow: hidden; }
+.a2-card .imgwrap img { display: block; width: 100%; height: 100%; object-fit: cover; opacity: 0; filter: sepia(.8) contrast(.6) brightness(1.2) blur(3px); }
+.a2-card .imgwrap img.developing { opacity: 1; filter: none; transition: opacity 2.6s ease-in, filter 3.2s ease-out; }
+.a2-card .meta { padding: 9px 2px 0; opacity: 0; transform: translateY(6px); transition: opacity .8s, transform .8s; }
+.a2-reader.developed .meta { opacity: 1; transform: none; }
+.a2-card .cap { margin: 3px 0 0; font-size: 16.5px; line-height: 1.55; }
+.a2-card .hot { position: absolute; width: 56px; height: 56px; margin: -28px; border-radius: 50%; border: 0; background: transparent; padding: 0; }
+.a2-card .hot::before { content: ""; position: absolute; top: 14px; right: 14px; bottom: 14px; left: 14px; border-radius: 50%; background: rgba(255,247,232,.92); box-shadow: 0 0 0 2px rgba(74,44,23,.55); }
+.a2-card .hot::after { content: ""; position: absolute; top: 4px; right: 4px; bottom: 4px; left: 4px; border-radius: 50%; border: 2px solid #fff7e8; animation: ring 1.7s ease-out infinite; }
+.a2-card .hot.seen::after { animation: none; opacity: .5; }
+.a2-card .hot.seen::before { background: var(--orange); }
+.a2-card .hot[hidden] { display: none; }
+.filmclip { position: absolute; right: 12px; bottom: 16px; transform: rotate(-6deg); filter: drop-shadow(0 3px 4px rgba(0,0,0,.3)); animation: clipWig 2.6s ease-in-out infinite; transform-origin: 90% 20%; }
+@keyframes clipWig { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(-2deg); } }
+.a2-note { position: absolute; left: 34px; right: 34px; bottom: calc(86px + var(--safe-b)); background: #ffe9a8; padding: 16px 16px 12px; box-shadow: 0 10px 24px rgba(8,6,2,.4); transform: rotate(-1.2deg); z-index: 5; font-size: 16px; line-height: 1.7; }
+.a2-note[hidden] { display: none; }
+.a2-note.in { animation: noteIn .4s cubic-bezier(.3,1.3,.5,1) both; }
+@keyframes noteIn { from { opacity: 0; transform: translateY(20px) rotate(3deg) scale(.9); } to { opacity: 1; transform: rotate(-1.2deg); } }
+.a2-note b { display: inline-block; font-size: 13px; padding: 1px 8px; background: var(--ink); color: #ffe9a8; border-radius: 2px; letter-spacing: .1em; font-weight: 500; }
+.a2-note p { margin: 8px 0 10px; }
+.a2-note .btn { float: right; }
+.a2-btns { position: absolute; left: 0; right: 0; display: flex; gap: 12px; justify-content: center; z-index: 3; }
+.a2-btns .btn[hidden] { display: none; }
+.a2-backcard { position: absolute; width: 80px; height: 100px; background: #f6ecd6; background-image: repeating-linear-gradient(0deg, transparent 0 9px, rgba(74,44,23,.12) 9px 10px); transform: rotate(-5deg); box-shadow: 0 3px 8px rgba(20,12,4,.3); border-radius: 2px; z-index: 4; }
+.a2-can { position: absolute; z-index: 6; }
+.a2-strip { position: absolute; height: 26px; z-index: 5; background:
+  repeating-linear-gradient(90deg, transparent 0 4px, #fbf3e2 4px 9px, transparent 9px 13px) 0 2px / 13px 4px repeat-x,
+  repeating-linear-gradient(90deg, transparent 0 4px, #fbf3e2 4px 9px, transparent 9px 13px) 0 20px / 13px 4px repeat-x,
+  repeating-linear-gradient(90deg, #2a1a10 0 3px, #9a5f2c 3px 36px, #2a1a10 36px 39px) 0 8px / 39px 10px repeat-x,
+  #2a1a10; touch-action: none; }
+.a2-strip.ready { animation: stripGlow 1.6s ease-in-out infinite; }
+.a2-strip.ready::after { content: ""; position: absolute; top: -22px; right: -6px; bottom: -22px; left: -6px; }
+@keyframes stripGlow { 50% { box-shadow: 0 0 0 3px rgba(255,247,232,.75); } }
+
+.a2-stamp { position: absolute; left: 22px; bottom: 20px; padding: 5px 10px; border: 1.5px solid rgba(184,67,46,.7); color: rgba(184,67,46,.8); font-size: 12px; line-height: 1.5; letter-spacing: .14em; text-align: center; transform: rotate(-6deg); border-radius: 4px; }
+.a2-line { position: absolute; pointer-events: none; }
+.a2-hang { animation: a2Hang 5.2s ease-in-out infinite; }
+@keyframes a2Hang { 0%,100% { transform: rotate(-2.2deg); } 50% { transform: rotate(2.2deg); } }
